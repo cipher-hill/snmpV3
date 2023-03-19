@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p: %c - %m%n"/>
+        </Console>
+        <RollingFile name="R" fileName="/var/log/mobile-shopping/mobile-shopping.log"
+                     filePattern="/var/log/mobile-shopping/mobile-shopping-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%p %t %c - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100KB" />
+            </Policies>
+            <DefaultRolloverStrategy maxBackupIndex="1"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.jayway.mobileshopping" level="info" additivity="false">
+            <AppenderRef ref="R" />
+        </Logger>
+        <Logger name="org.springframework.core" level="info" additivity="false">
+            <AppenderRef ref="R" />
+        </Logger>
+        <Logger name="org.springframework.beans" level="info" additivity="false">
+            <AppenderRef ref="R" />
+        </Logger>
+        <Logger name="org.springframework.context" level="info" additivity="false">
+            <AppenderRef ref="R" />
+        </Logger>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="R" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="R" />
+        </Root>
+    </Loggers>
+</Configuration>
